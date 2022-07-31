@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/layout.css">
+    <script src="https://kit.fontawesome.com/a1dc0f163e.js" crossorigin="anonymous"></script>
+
+    {% block css %}
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %}</title> 
+
+</head>
+<body>
+    <!-- NAVBAR -->
+    <div class="nav-wrapper">
+        <div class="nav-logo-container">
+            <img class="nav-logo" src="https://lh6.googleusercontent.com/x3Sr-N2o4yk3AckWcvoOhGhB1y7ePo-eBUlMmV3HNfPQn1UID06RRdXNzt8nG23eU9MtBxH1cDSdSh934qRzM5s=w16383" alt="Logo">
+            <h3 class="text-white m-auto" style="font-weight: bold;">Youth Pioneers in STEM</h3>
+        </div>
+        <nav>
+            <input class="hidden" type="checkbox" id="menuToggle">
+            <label class="menu-btn" for="menuToggle">
+                <div class="menu"></div>
+                <div class="menu"></div>
+                <div class="menu"></div>
+            </label>
+            <div class="nav-container">
+                <ul class="nav-tab-list">
+                    <li class="nav-tab"><a href="#">Dashboard</a></li>
+                    <li class="nav-tab"><a href="#">Search</a></li>
+                    <li class="nav-tab"><a href="#">Profile</a></li>
+                    <li class="nav-tab"><a href="#">Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- FOOTER -->
+    <footer class="section bg-footer">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="">
+                        <h6 class="footer-heading font-weight-bold text-uppercase text-white">ABOUT US</h6>
+                        <div class="mt-4 summary-info">
+                            StemLink is a YPStem initiative, aiming to connect students to more STEM opportunities
+                            and to collaborate on world-changing projects.
+                        </div>
+                        <p class="footer-alt mt-4 mb-0" style="font-size: 12px;">©2022 Youth Pioneers in Stem. All rights reserved. </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="">
+                        <h6 class="footer-heading font-weight-bold text-uppercase text-white">Help</h6>
+                        <ul class="list-unstyled footer-link mt-3">
+                            <li><a href="">Sign Up</a></li>
+                            <li><a href="">Login</a></li>
+                            <li><a href="">YPStem</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading font-weight-bold text-uppercase text-white">Contact Us</h6>
+                        <p class="contact-info mt-4">Get in touch at contact@ypstem.org</p>
+                        <div class="mt-4">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="#"><i class="fa-brands facebook footer-social-icon fa-facebook-f"></i></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i class="fa-brands twitter footer-social-icon fa-twitter"></i></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i class="fa-brands google footer-social-icon fa-google"></i></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i class="fa-brands apple footer-social-icon fa-apple"></i></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    {% block script %}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+
+
