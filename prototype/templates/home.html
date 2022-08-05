@@ -1,15 +1,34 @@
+<!-- Essentially what you insert between the {% block %} and {% endblock %} 
+will be copy and pasted into layout.html between those corresponding blocks. -->
+
 {% extends "layout.html" %}
 
+
+
 {% block css %}
+<!-- insert css script here -->
+<!-- eg. <link rel="stylesheet" href="../static/css/home.css"> -->
+
 {% endblock %}
+
+
 
 {% block title %}
 Home
 {% endblock %}
 
+
+
 {% block content %}
+<!-- Do your code here, this would be where the content of the website goes. -->
 Home
 {% endblock %}
 
+
+
+
 {% block script %}
+<!-- insert js script here -->
+<!-- eg. <script src="../static/js/home.js"> -->
+
 {% endblock %}
