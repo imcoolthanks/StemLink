@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Rubik:wght@400;700&display=swap');
+
+.navbar {
+    background-color: #011627;
+    /* border: 2px orange solid; */
+}
+
+.container{
+    /* background-color: blue; */
+    font-family: 'Rubik', sans-serif;
+}
+
+h1 {
+    font-size: 38px;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+.form-select {
+    background: #e7e6e6;
+    border-radius: 1rem !important;
+}
+.form-control {
+    background: #e7e6e6;
+    border-radius: 1rem;
+}
+
+.top-buffer {
+    margin-top: 20px;
+}
+
+.rounded-30 {
+    border-radius: 30px;
+}
+
+button {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#buttons button{
+    background-color: #2EC4B6;
+    border-radius: 10px;
+}
+
+#buttons a {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    background-color: #ACD2F9;
+}
+
+#buttons button, #buttons a {
+    width: 120px;
+}
+
+.card{
+    margin: 2em 0em 2em 0em;
+}
+
+.card-body{
+    padding: 1em 1em 4em 1em;
+}
+
+.card h5{
+    font-weight: 800;    
+}
+
+.card h7{
+    font-size: 14px;
+}
+
+.more-info-btn{
+    background-color: #2EC4B6;
+    width: 150px;
+    position: absolute;
+    bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.card-text{
+    font-size:large;
+}
+
+.row{
+    overflow: hidden; 
+}
+
+.cards-group [class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+.search-icon {
+    margin-left: 5px;
+    width: 27px;
+}
+
+.search-button{
+    background-image: url('search_icon.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+#search-title-bubble {
+    background-color: #FFDC96;
+}
+
+.card {
+    background-color: #FFDC96;
+    height: 80%;
+}
+
+body {
+    margin: 3em;
+}

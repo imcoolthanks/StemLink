@@ -1,0 +1,103 @@
+body{
+    color: #1a202c;
+    text-align: left;
+    background-color: #f5f9fc;    
+  }
+  .main-body {
+    padding: 15px;
+  }
+  .main-body > h3 {
+    padding:15px;
+    width: 100%;
+    background-color: white;
+  }
+  .card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+  }
+  
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+  }
+  
+  .card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.5rem;
+  }
+  
+  .user-info-card h6 {
+    line-height: 1.5em;
+  }
+  
+  .gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+  }
+  
+  .gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  .mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+  }
+  
+  .bg-gray-300 {
+    background-color: #e2e8f0;
+  }
+  .h-100 {
+    height: 100%!important;
+  }
+  .shadow-none {
+    box-shadow: none!important;
+  }
+  
+  .settings-input {
+    border: none;
+  }
+  
+  .settings-input:focus {
+    border: black;
+  }
+  
+  .website-list-item {
+    height: 2em;
+    font-size: 17px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .website-list-item button {
+    position: absolute;
+    right: 0;
+    font-size: 15px;
+  }
+  
+  .website-add-list {
+    margin-top: 40px;
+  }
+  
+  .website-add-list input {
+    width: 75%;
+    display: inline;
+    margin-right: 5%;
+  }
+  
+  .website-add-list button {
+    width: 19%;
+    position: absolute;
+    background-color: #FF3946;
+  }
+  
+  hr {
+    margin: 0.5em;
+  }
