@@ -7,6 +7,7 @@ will be copy and pasted into layout.html between those corresponding blocks. -->
 
 {% block css %}
 <link rel="stylesheet" href="../static/css/home.css"></link>
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 {% endblock %}
 
 
@@ -26,10 +27,99 @@ Home
           <h1 id='headerTitle'>Stemlink</h1>
           <p id='stemlink_description'>Connecting like-minded individuals</p>
         </div>
-        <div class='login'>
-          
-        </div>
-    
+        
+        <div class="login-container-div" style="margin:auto; padding-top:10vh;">
+          <div class="container">
+                  <div class="forms">
+                      <div class="form login">
+                          <span class="title">Login</span>
+  
+                          <!-- IGNORE THIS
+                          {% if error is defined %}
+                          <p style="color: red;">{{error}}</p>
+                          {% endif %}
+                          -->
+  
+                          <form action="{{ url_for('login') }}" method="post">
+                              <div class="input-field">
+                                  <input name="email" type="text" placeholder="Enter your email" required>
+                                  <i class="uil uil-envelope"></i>
+                              </div>
+  
+                              <div class="input-field">
+                                  <input name="password" type="password" class="password" placeholder="Enter your password" required>
+                                  <i class="uil uil-lock icon"></i>
+                                  <i class="uil uil-eye-slash showHidePw"></i>
+                              </div>
+  
+                              <div class="checkbox-text">
+                                  <div class="checkbox-content">
+                                      <input type="checkbox" id="logCheck">
+                                      <label for="logCheck" class="text">Remember me</label>
+                                  </div>
+  
+                                  <a href="#" class="text">Forgot password?</a>
+                              </div>
+  
+                              <div class="input-field button">
+                                  <input type="submit" value="Login Now">
+                              </div>
+                          </form>
+  
+                          <div class="login-signup">
+                              <span class="text">Not a member?
+                                  <a href="#" class="text signup-link">Signup now</a>
+                              </span>
+                          </div>
+  
+                      </div>
+  
+  
+                      <div class="form signup">
+                          <span class="title">Registration</span>
+  
+                          <form action="#">
+                              <div class="input-field">
+                                  <input type="text" placeholder="Enter your name" required>
+                                  <i class="uil uil-user"></i>
+                              </div>
+                              <div class="input-field">
+                                  <input type="text" placeholder="Enter your email" required>
+                                  <i class="uil uil-envelope"></i>
+                              </div>
+  
+                              <div class="input-field">
+                                  <input type="password" placeholder="Create a password" required>
+                                  <i class="uil uil-lock icon"></i>
+                              </div>
+                              <div class="input-field">
+                                  <input type="password" class="password" placeholder="Confirm a password" required>
+                                  <i class="uil uil-lock icon"></i>
+                                  <i class="uil uil-eye-slash showHidePw"></i>
+                              </div>
+  
+                              <div class="checkbox-text">
+                                  <div class="checkbox-content">
+                                      <input type="checkbox" id="signCheck">
+                                      <label for="signCheck" class="text">I accept all terms & conditions</label>
+                                  </div>
+                              </div>
+  
+                              <div class="input-field button">
+                                  <input type="button" value="Register Now">
+                              </div>
+                          </form>
+  
+                          <div class="login-signup">
+                              <span class="text">Already have an account?
+                                  <a href="#" class="text login-link">Login now</a>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        
     </div>
     
     <div class = 'homeAbout'>
@@ -41,12 +131,14 @@ Home
         <h1>What We Do</h1>
         <div class = 'wwdContent'>
         <div class = 'wwdExample'>
-     
-          <p>Connect students with other students who have similar interests</p>
+          <img src = '../static/assets/with_students.webp'>
+          <h2>Student to Student</h2>
+          <p>We connect students with other students who have similar interests</p>
         </div>
         <div class = 'wwdExample'>
-         
-          <p>Connect students with recruiters who have similar interests</p>
+          <img src = '../static/assets/with_recruiters.png'>
+          <h2>Student to Recruiters</h2>
+          <p>Connect recruiters with students who are looking for opportunities</p>
         </div>
         </div>  
       </div>
