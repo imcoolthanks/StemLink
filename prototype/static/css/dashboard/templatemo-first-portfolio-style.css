@@ -13,12 +13,9 @@
 
   --body-font-family:             'DM Sans', sans-serif;
 
-  --h1-font-size:                 62px;
-  --h2-font-size:                 48px;
-  --h3-font-size:                 36px;
-  --h4-font-size:                 32px;
-  --h5-font-size:                 24px;
-  --h6-font-size:                 22px;
+  --h1-font-size:                 50px;
+  --h2-font-size:                 36px;
+  --h3-font-size:                 32px;
   --p-font-size:                  18px;
   --menu-font-size:               12px;
   --copyright-font-size:          14px;
@@ -319,11 +316,10 @@ strong {
 }
 
 .hero-image {
-  position: absolute;
+  position: relative;
   z-index: 22;
-  top: -45px;
-  width: 60%;
-  right: 110px;
+  border-radius: 50%;
+  float: right;
 }
 
 .hero svg {
@@ -402,10 +398,6 @@ strong {
     width: 400px;
     height: 400px;
   }
-
-  .hero-image {
-    min-width: 650px;
-  }
   
   .hero-title,
 	.hero h2 {
@@ -451,12 +443,16 @@ strong {
 
   .hero {
     padding-top: 200px;
-    padding-bottom: 400px;
+    padding-bottom: 200px;
   }
 
   .hero-text {
     top: 0;
     margin-bottom: 120px;
+  }
+
+  .hero-image {
+    display: none;
   }
 
   .services .col-lg-10 .row .col-lg-6:last-child,
@@ -505,6 +501,7 @@ strong {
 
   .hero-image {
     min-width: inherit;
+    float: none;
   }
 }
 

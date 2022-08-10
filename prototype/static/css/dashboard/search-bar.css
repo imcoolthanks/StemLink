@@ -5,7 +5,7 @@
     --color-light: #fff;
     --color-brand: #57bd84;
     --font-fam: 'Lato', sans-serif;
-    --height: 5rem;
+    --height: 4rem;
     --btn-width: 6rem;
     --bez: cubic-bezier(0, 0, 0.43, 1.49);
   }
@@ -20,7 +20,7 @@
     font-family: var(--font-fam);
     border: 0;
     color: var(--color-dark);
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
   input[type="search"] {
     outline: 0;
