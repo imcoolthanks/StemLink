@@ -1,4 +1,5 @@
-import sqlite3
+import sqlite3 as sql
+from webbrowser import get
 from flask import Flask, request
 from flask import render_template
 from . import app
@@ -12,7 +13,7 @@ def home():
 
 @app.route("/dashboard")
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', username='')
 
 @app.route("/profile")
 def profile():
@@ -22,15 +23,63 @@ def profile():
 def search():
     return render_template('search.html')
 
-#Delete
-@app.route("/layout")
-def layout():
-    return render_template('layout.html')
 
 
 
 
+#Login
+@app.route("/login/", methods = ['POST', 'GET'])
+def login():                
+    if request.method == 'POST':
+        global user_email
+        global user_username
 
+        email = request.form.get('email') 
+        password = request.form.get('password')
+
+        success, error_msg = _login(email, password)
+        
+        if success:
+            info = get_info(email)
+
+            return render_template("dashboard.html", user_username = info[2], pfp_url=info[5])
+        else:
+            return render_template('home.html') #, error=error_msg
+
+    return render_template('login.html')
+
+def _login(email, password):
+    conn = sql.connect("users.db")
+    cur = conn.cursor()
+
+    try:
+        query = 'SELECT password FROM users WHERE email = ?'
+        cur.execute(query, (email,))
+        true_password = cur.fetchall()[0][0]
+    except:
+        return False, "Invalid Email Address."
+
+    conn.close()
+
+    if password == true_password:
+        return True, ""
+    else:
+        return False, print("Wrong Password.")
+
+def get_info(email):
+    conn = sql.connect("users.db")
+    cur = conn.cursor()
+
+    #get username
+    query = 'SELECT * FROM users WHERE email = ?'
+    cur.execute(query, (email,))
+    info = cur.fetchall()[0]
+
+    print(info)
+
+    conn.close()
+
+    return info
 
 
 
@@ -49,8 +98,8 @@ def search_students():
 def search_scholarship_results():
     def search_scholarship(category, search):
         try:
-            #con = sqlite3.connect("prototype/static/databases/scholarship_database.db")
-            con = sqlite3.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/scholarship_database.db")
+            #con = sql.connect("prototype/static/databases/scholarship_database.db")
+            con = sql.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/scholarship_database.db")
         except:
             print("Can't connect to database")
 
@@ -81,8 +130,8 @@ def search_bursary_results():
     def search_bursary(category, search):
         print("Connecting database")
         try:
-            #con = sqlite3.connect("prototype/static/databases/scholarship_database.db")
-            con = sqlite3.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/bursary_database.db")
+            #con = sql.connect("prototype/static/databases/scholarship_database.db")
+            con = sql.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/bursary_database.db")
         except:
             print("Can't connect to database")
 
@@ -146,8 +195,8 @@ def filter_bursary_results():
 #-------------------- FILTER OPTIONS --------------------
 def filter_scholarship(aos, institution, gender, nationality, degree_type):
     try:
-        # con = sqlite3.connect("prototype/static/databases/scholarship_database.db")
-        con = sqlite3.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/scholarship_database.db")
+        # con = sql.connect("prototype/static/databases/scholarship_database.db")
+        con = sql.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/scholarship_database.db")
     except:
         print("Can't connect to database")
 
@@ -197,8 +246,8 @@ def filter_scholarship(aos, institution, gender, nationality, degree_type):
 
 def filter_bursary(aos, institution, nationality, degree_type):
     try:
-        # con = sqlite3.connect("prototype/static/databases/bursary_database.db")
-        con = sqlite3.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/bursary_database.db")
+        # con = sql.connect("prototype/static/databases/bursary_database.db")
+        con = sql.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/bursary_database.db")
     except:
         print("Connection Error")
 
@@ -244,8 +293,8 @@ def filter_bursary(aos, institution, nationality, degree_type):
 #-------------------- GET ID FUNCTIONS --------------------
 def filter_scholarship_by_id(id):
     try:
-        # con = sqlite3.connect("prototype/static/databases/scholarship_database.db")
-        con = sqlite3.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/scholarship_database.db")
+        # con = sql.connect("prototype/static/databases/scholarship_database.db")
+        con = sql.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/scholarship_database.db")
     except:
         print("Can't connect to database")
 
@@ -265,8 +314,8 @@ def filter_scholarship_by_id(id):
 
 def filter_bursary_by_id(id):
     try:
-    # con = sqlite3.connect("prototype/static/databases/bursary_database.db")
-        con = sqlite3.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/bursary_database.db")
+    # con = sql.connect("prototype/static/databases/bursary_database.db")
+        con = sql.connect(os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/bursary_database.db")
     except:
         print("Can't connect to database")
 
@@ -288,13 +337,13 @@ def filter_bursary_by_id(id):
 def load_scholarship_options():
     #get cursor
     # if os.path.isfile("prototype/static/databases/scholarship_database.db"):
-        # con = sqlite3.connect("prototype/static/databases/scholarship_database.db")
+        # con = sql.connect("prototype/static/databases/scholarship_database.db")
 
     path = os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/scholarship_database.db"
     if os.path.isfile(path):
-        con = sqlite3.connect(path)
+        con = sql.connect(path)
 
-    con.row_factory = sqlite3.Row
+    con.row_factory = sql.Row
     cur = con.cursor()
 
     #Get distinct values for [area of study, institution, gender, nationality, degree type]
@@ -316,13 +365,13 @@ def load_scholarship_options():
 def load_bursary_options():
     #get cursor
     # if os.path.isfile("prototype/static/databases/bursary_database.db"):
-    #     con = sqlite3.connect("prototype/static/databases/bursary_database.db")
+    #     con = sql.connect("prototype/static/databases/bursary_database.db")
 
     path = os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/bursary_database.db"
     if os.path.isfile(path):
-        con = sqlite3.connect(path)
+        con = sql.connect(path)
 
-    con.row_factory = sqlite3.Row
+    con.row_factory = sql.Row
     cur = con.cursor()
 
     #Get distinct values for [area of study, institution, nationality, degree type]
@@ -342,16 +391,16 @@ def load_bursary_options():
     return options
 
 
-@app.route("/list_bursary")
-def list_bursary():
+@app.route("/list_user")
+def list_user():
     # if os.path.isfile("prototype/static/databases/bursary_database.db"):
-    #     con = sqlite3.connect("prototype/static/databases/bursary_database.db")
+    #     con = sql.connect("prototype/static/databases/bursary_database.db")
 
     path = os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/bursary_database.db"
     if os.path.isfile(path):
-        con = sqlite3.connect(path)
+        con = sql.connect(path)
 
-    con.row_factory = sqlite3.Row
+    con.row_factory = sql.Row
     cur = con.cursor()
 
     cur.execute("select * from bursary")
@@ -359,23 +408,4 @@ def list_bursary():
     rows = list(cur.fetchall())
 
     return rows
-
-#Print all from database to terminal
-def list_scholarship():
-    # if os.path.isfile("prototype/static/databases/scholarship_database.db"):
-    #     con = sqlite3.connect("prototype/static/databases/scholarship_database.db")
-
-    path = os.path.dirname(os.path.abspath(__file__)).replace('\\', '/') +"/static/databases/scholarship_database.db"
-    if os.path.isfile(path):
-        con = sqlite3.connect(path)
-
-    con.row_factory = sqlite3.Row
-    cur = con.cursor()
-
-    cur.execute("select * from scholarship")
-
-    rows = list(cur.fetchall())
-    
-    return rows
-
 

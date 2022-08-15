@@ -1,38 +1,27 @@
-
 import sqlite3 as sql
-import csv
 
-def create_scholarship():
+def create_users():
     #Create database file/connect to it
-    conn = sql.connect("scholarship_database.db")
+    conn = sql.connect("users.db")
 
     #Create table
-    conn.execute("""CREATE TABLE scholarship (name TEXT, price TEXT, area_of_study TEXT, institution TEXT, gender TEXT, 
-                                            nationality TEXT, country TEXT, residency TEXT, url TEXT, degree_type TEXT,
-                                            deadline TEXT,id TEXT PRIMARY KEY)""")
+    conn.execute("""CREATE TABLE users (email TEXT PRIMARY KEY, password TEXT, name TEXT, age INT, role TEXT, pfp_url TEXT) 
+                                            """)
 
     print("table created")
 
     conn.close()
 
-def populate_scholarship():
-    #Get all rows from csv file
-    with open('D:/Programming/VisualCode/Hackathon/Starhacks real/building-tuition/prototype/static/databases/scholarship.csv', newline='') as f:
-        reader = csv.reader(f)
-        next(reader) #skip headers line
-        data = list(reader)
+def new_user(row): #Pass in an array of info (email, password, name, age, role) like this
 
     #Connect to database
-    conn = sql.connect("scholarship_database.db")
+    conn = sql.connect("users.db")
     cur = conn.cursor()
 
     #Load all rows
-    for row in data:
-        print(row) #Debug
-        insert_query = """INSERT INTO scholarship (name, price, area_of_study, institution, gender, 
-                                        nationality, country, residency, url, degree_type, deadline, id)
-                                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"""
-        cur.execute(insert_query, (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11]))
+    insert_query = """INSERT INTO users (email, password, name, age, role, pfp_url) 
+                                        VALUES (?,?,?,?,?,?)"""
+    cur.execute(insert_query, (row[0], row[1], row[2], row[3], row[4], row[5]))
 
     #Save changes
     conn.commit()
@@ -41,41 +30,23 @@ def populate_scholarship():
 
     print("Loading completed")
 
-def create_bursary():
-    #Create database file/connect to it
-    conn = sql.connect("bursary_database.db")
+#DEBUGGING ---- DELETE
+def list_user():
+    # if os.path.isfile("prototype/static/databases/bursary_database.db"):
+    #     con = sqlite3.connect("prototype/static/databases/bursary_database.db")
 
-    #Create table
-    conn.execute("""CREATE TABLE bursary (name TEXT, age TEXT, area_of_study TEXT, institution TEXT, degree_type TEXT, 
-                                            nationality TEXT, country TEXT, residency TEXT, url TEXT, id TEXT PRIMARY KEY, desc TEXT)""")
-
-    print("table created")
-
-    conn.close()
-
-def populate_bursary():
-    #Get all rows from csv file
-    with open('D:/Programming/VisualCode/Hackathon/Starhacks real/building-tuition/prototype/static/databases/bursary.csv', newline='') as f:
-        reader = csv.reader(f)
-        next(reader) #skip headers line
-        data = list(reader)
-
-    #Connect to database
-    conn = sql.connect("bursary_database.db")
+    conn = sql.connect("users.db")
     cur = conn.cursor()
 
-    #Load all rows
-    for row in data:
-        print(row) #Debug
-        insert_query = """INSERT INTO bursary (name, age, area_of_study, institution, degree_type, 
-                                        nationality, country, residency, url, id, desc)
-                                        VALUES (?,?,?,?,?,?,?,?,?,?,?)"""
-        cur.execute(insert_query, (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10]))
+    cur.execute("select * from users")
+    
+    rows = list(cur.fetchall())
 
-    #Save changes
-    conn.commit()
+    return rows
 
-    conn.close()
+def create_new():
+    create_users()
+    new_user(("123@gmail.com","123","Rick",123,"student","default_user_icon.jpg"))
+    list_user()
 
-    print("Loading completed")
-
+list_user()
