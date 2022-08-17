@@ -30,13 +30,14 @@
     display:flex;
     justify-content:space-evenly;
     align-items: center;
+   
   }
   
   .header_content{
     color:white;
   }
 
-  
+   
    .login-container-div .container {
     position: relative;
     max-width: 430px;
@@ -205,11 +206,34 @@
     margin-top: 30px;
     text-align: center;
   }
-   */
+   
+  /* @media screen and (max-width:700px){ 
+    .header{
+
+      display:grid;
+      grid-template-columns:auto; 
+      align-content:center;
+      justify-self: center;
+      position:relative; 
+      width:100%;
+      margin:0 auto;
+      height: 90vh;
+      padding-top:2vh;
+      
+    }
+    .header_content{
+      text-align:center;
+      
+    }
+    .login-container-div .container{
+      margin-top: 0;
+      padding-bottom:1rem;
+    }
+  } */
+
 
   .homeAbout{
-    display:flex;
-    justify-content: center;
+    
     margin-top: 32px;
     padding: 0px 1em;
     
@@ -226,9 +250,10 @@
     text-align: center;
   }
 
+  
   .whatWeDo{
     height:auto;
-    padding:1.5rem;
+    padding:5vh 1.5rem;
     background-color:#3aa986;
     margin:2rem 0;
     text-align:center;
@@ -240,10 +265,20 @@
     justify-content:space-evenly;
   }
 
+  .wwdExample{
+    margin:5vh;
+  }
+
   .wwdExample img{
-    height: 10vh;
+    height: 15vh;
   }
   
+  @media screen and (max-width:700px){ 
+    .wwdContent{
+      flex-direction:column;
+      margin:1rem;
+    }
+  }
   /* past user projects */
   .pastProjects{
     width:80%;
