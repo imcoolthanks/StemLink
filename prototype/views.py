@@ -1,8 +1,8 @@
 import sqlite3 as sql
-from webbrowser import get
 from flask import Flask, request
 from flask import render_template
 from . import app
+import requests  
 
 import os
 
@@ -24,10 +24,9 @@ def search():
     return render_template('search.html')
 
 
+# 1. Home Page
 
-
-
-#Login
+# - Login fucnction 
 @app.route("/login/", methods = ['POST', 'GET'])
 def login():                
     if request.method == 'POST':
@@ -41,8 +40,11 @@ def login():
         
         if success:
             info = get_info(email)
+            interests = get_interests(email)[:3] #get top 3
 
-            return render_template("dashboard.html", user_username = info[2], pfp_url=info[5])
+            interest_str = ', '.join(interests)
+
+            return render_template("dashboard.html", user_username = info[2], pfp_url=info[5], interests=interest_str)
         else:
             return render_template('home.html') #, error=error_msg
 
@@ -66,6 +68,11 @@ def _login(email, password):
     else:
         return False, print("Wrong Password.")
 
+
+
+# 2. Dashboard
+
+# - Display all user info
 def get_info(email):
     conn = sql.connect("users.db")
     cur = conn.cursor()
@@ -80,6 +87,104 @@ def get_info(email):
     conn.close()
 
     return info
+
+# - Display user's interest
+def get_interests(email):
+    conn = sql.connect("interests.db")
+    cur = conn.cursor()
+
+    #get username
+    query = 'SELECT interest FROM interests WHERE email = ?'
+    cur.execute(query, (email,))
+    rows = list(cur.fetchall())
+
+    conn.close()
+
+    interests = []
+
+    for r in rows:
+        interests.append(r[0])
+
+    #return an array of interests
+    return interests
+
+# - Display news based on interest
+def get_news_by_interest(interest, num):
+    # BBC news api
+    # following query parameters are used
+    # source, sortBy and apiKey
+    query_params = {
+      "sortBy": "top",
+      "apiKey": "803faabb3328410ebf50846c453353e2",
+      "q": interest,
+      "language":"en"
+    }
+    main_url = " https://newsapi.org/v2/everything"
+ 
+    # fetching data in json format
+    res = requests.get(main_url, params=query_params)
+    data = res.json()
+ 
+    # getting all articles in a string article
+    article = data["articles"]
+ 
+    # empty list which will
+    # contain all trending news
+    all_results = []
+      
+    for i in range(num):
+        curr = []
+
+        ar = article[i]
+
+        curr.append(ar["title"])
+        curr.append(ar["author"])
+        curr.append(ar["description"])
+        curr.append(ar["url"])
+        curr.append(ar["urlToImage"])
+
+        all_results.append(curr)
+
+    return all_results
+
+
+
+
+# 3. Search Page
+
+
+
+# - Enter interest and return results
+
+
+
+
+
+# 4. Profile
+
+
+# - When users changed their info and submits, update database
+
+
+
+
+
+# 5. Log Out
+
+# - Log out function
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
