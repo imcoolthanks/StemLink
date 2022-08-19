@@ -102,7 +102,6 @@ body{
     margin: 0.5em;
   }
 
-.save,.pencil{
-    background-color:#fff;
-    border:none;
+  .editing{
+    background-color: aqua;
   }

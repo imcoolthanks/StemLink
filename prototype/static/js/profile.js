@@ -16,15 +16,7 @@ var save_button = $('.save')
     edit.click(function(){
         edit.hide()
         save_button.show()
-
-
-        username.attr('contenteditable','true')
-        email.attr('contenteditable','true')
-        password.attr('contenteditable','true')
-        bio.attr('contenteditable','true')
-
-       
-    
+        text_secondary.attr('contenteditable','true')
 })
     save_button.click(function(){
         
@@ -32,10 +24,8 @@ var save_button = $('.save')
         save_button.hide()
         edit.show()
 
-        username.attr('contenteditable','false')
-        email.attr('contenteditable','false')
-        password.attr('contenteditable','false')
-        bio.attr('contenteditable','false')
+        text_secondary.attr('contenteditable','false')
+        
     
         // text_secondary.show()
         // userChange.hide()
