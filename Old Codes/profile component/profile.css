@@ -101,3 +101,8 @@ body{
   hr {
     margin: 0.5em;
   }
+
+.save,.pencil{
+    background-color:#fff;
+    border:none;
+  }
