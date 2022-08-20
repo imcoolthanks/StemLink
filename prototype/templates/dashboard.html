@@ -72,48 +72,22 @@ Dashboard
 
                 <div class="clearfix"></div>
 
+                {% for p in people %}
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="projects-thumb">
                         <div class="projects-info">
-                            <small class="projects-tag">Climate Change</small>
+                            <small class="projects-tag">{{ p.interest }}</small>
 
-                            <h3 class="projects-title">Queena</h3>
+                            <h3 class="projects-title">{{ p.username }}</h3>
                     
                         </div>
 
-                        <a href="../static/assets/default_user_icon.jpg" class="popup-image">
-                            <img src="../static/assets/default_user_icon.jpg" class="projects-image img-fluid" alt="">
+                        <a href="../static/assets/user_icons/{{ p.pfp }}" class="popup-image">
+                            <img src="../static/assets/user_icons/{{ p.pfp }}" class="projects-image img-fluid" alt="">
                         </a>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="projects-thumb">
-                        <div class="projects-info">
-                            <small class="projects-tag">Anime</small>
-
-                            <h3 class="projects-title">Adam</h3>
-                        </div>
-
-                        <a href="../static/assets/default_user_icon.jpg" class="popup-image">
-                            <img src="../static/assets/default_user_icon.jpg" class="projects-image img-fluid" alt="">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="projects-thumb">
-                        <div class="projects-info">
-                            <small class="projects-tag">Youtube</small>
-
-                            <h3 class="projects-title">Rick Astley</h3>
-                        </div>
-
-                        <a href="../static/assets/default_user_icon.jpg" class="popup-image">
-                            <img src="../static/assets/default_user_icon.jpg" class="projects-image img-fluid" alt="">
-                        </a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

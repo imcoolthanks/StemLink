@@ -42,13 +42,17 @@ def login():
         if success:
             info = get_info(email)
             interests = get_interests(email)[:3] #get top 3
-
             interest_str = ', '.join(interests)
+
+            #for now!!
+            people = [{'username': 'Queen', 'interest':'Computer Science', 'pfp':'default_user_icon.jpg'},
+                        {'username': 'Rick', 'interest':'You', 'pfp':'default_user_icon.jpg'},
+                        {'username': 'Adam', 'interest':'Anime', 'pfp':'default_user_icon.jpg'}]
 
             news = get_news_by_interest(interests[0], 3)
 
             return render_template("dashboard.html", user_username = info[2], pfp_url=info[5],
-                                    interests=interest_str, all_news=news)
+                                    interests=interest_str, people = people, all_news=news)
              
         else:
             return render_template('home.html') #, error=error_msg
@@ -150,8 +154,6 @@ def get_news_by_interest(interest, num):
         all_results.append(curr)
 
     return all_results
-
-
 
 
 # - Enter interest, takes in interest as string and return people (name and pfp) (Adam)
