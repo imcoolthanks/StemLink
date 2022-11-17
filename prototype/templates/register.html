@@ -44,51 +44,48 @@ will be copy and pasted into layout.html between those corresponding blocks. -->
         <div class="login-container-div" style="margin:auto; padding-top:10vh;">
           <div class="container">
                   <div class="forms">
-                      <div class="form login">
-                          <span class="title">Login</span>
+
   
-                          <!-- IGNORE THIS
-                          {% if error is defined %}
-                          <p style="color: red;">{{error}}</p>
-                          {% endif %}
-                          -->
+                      <div class="form signup">
+                          <span class="title">Registration</span>
   
-                          <form action="{{ url_for('login') }}" method="post">
+                          <form action="{{ url_for('register') }}" method="post">
+                              <div class="input-field">
+                                  <input name="name" type="text" placeholder="Enter your name" required>
+                                  <i class="uil uil-user"></i>
+                              </div>
                               <div class="input-field">
                                   <input name="email" type="text" placeholder="Enter your email" required>
                                   <i class="uil uil-envelope"></i>
                               </div>
   
                               <div class="input-field">
-                                  <input name="password" type="password" class="password" placeholder="Enter your password" required>
+                                  <input name="password" type="password" placeholder="Create a password" required>
+                                  <i class="uil uil-lock icon"></i>
+                              </div>
+                              <div class="input-field">
+                                  <input name="confirm_password" type="password" class="password" placeholder="Confirm a password" required>
                                   <i class="uil uil-lock icon"></i>
                                   <i class="uil uil-eye-slash showHidePw"></i>
                               </div>
   
                               <div class="checkbox-text">
                                   <div class="checkbox-content">
-                                      <input type="checkbox" id="logCheck">
-                                      <label for="logCheck" class="text">Remember me</label>
+                                      <input name="accept" type="checkbox" id="signCheck">
+                                      <label for="signCheck" class="text">I accept all terms & conditions</label>
                                   </div>
-  
-                                  <a href="#" class="text">Forgot password?</a>
                               </div>
   
                               <div class="input-field button">
-                                  <input type="submit" value="Login Now">
+                                  <input type="submit" value="Register Now">
                               </div>
                           </form>
   
                           <div class="login-signup">
-                              <span class="text">Not a member?
-                                  <a href="register" class="text signup-link">Signup now</a>
+                              <span class="text">Already have an account?
+                                  <a href="#" class="text login-link">Login now</a>
                               </span>
                           </div>
-  
-                      </div>
-  
-  
-
                       </div>
                   </div>
               </div>
@@ -241,7 +238,7 @@ will be copy and pasted into layout.html between those corresponding blocks. -->
         </div>
     </footer>
 
-    <script src="../static/js/home.js"></script>
+    <script src="../static/js/register.js"></script>
     <script src="https://kit.fontawesome.com/8856d7fd6e.js" crossorigin="anonymous"></script>
 
 </body>

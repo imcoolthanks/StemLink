@@ -1,6 +1,11 @@
+from re import L
 import sqlite3 as sql
+
+
 from flask import Flask, request
 from flask import render_template
+
+from prototype.static.databases.database import *
 from . import app
 
 import requests
@@ -29,7 +34,8 @@ def search():
 
 # - Login function 
 @app.route("/login/", methods = ['POST', 'GET'])
-def login():                
+def login(): 
+    print("check")
     if request.method == 'POST':
         global user_email
         global user_username
@@ -60,6 +66,7 @@ def login():
     return render_template('login.html')
 
 def _login(email, password):
+    print("check")
     conn = sql.connect("users.db")
     cur = conn.cursor()
 
@@ -77,6 +84,27 @@ def _login(email, password):
     else:
         return False, print("Wrong Password.")
 
+
+#register function 
+@app.route("/register/",methods = ['POST', 'GET'])
+def register():
+    print("check")
+    if request.method == 'POST':
+        global user_email
+        global user_username
+        name = request.form.get('name') 
+        password = request.form.get('password')
+        email = request.form.get('email') 
+        password = request.form.get('password')
+
+        
+
+    
+    return render_template("register.html")
+
+def _register():
+    print(" register check")
+  
 
 
 # 2. Dashboard
@@ -529,4 +557,3 @@ def list_user():
     rows = list(cur.fetchall())
 
     return rows
-
