@@ -163,6 +163,19 @@
     margin: 0 8px -2px 4px;
     accent-color: #4070f4;
   }
+
+  .radio-text{
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    color:#333;
+    margin:20px 0px;
+    
+  }
+
+  #employer{
+    margin-left:15px;
+  }
   
   .form .text {
     color: #333;
@@ -234,7 +247,7 @@
 
   .homeAbout{
     
-    margin-top: 32px;
+    margin: 4.5rem;
     padding: 0px 1em;
     
   }

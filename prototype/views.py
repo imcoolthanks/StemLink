@@ -88,18 +88,19 @@ def _login(email, password):
 #register function 
 @app.route("/register/",methods = ['POST', 'GET'])
 def register():
-    print("check")
+    data=["ID","name","password","email","imageUrl","age","country","State","Interests","mentors"]
     if request.method == 'POST':
-        global user_email
-        global user_username
-        name = request.form.get('name') 
-        password = request.form.get('password')
-        email = request.form.get('email') 
-        password = request.form.get('password')
-
-        
-
-    
+        print(request.form.get("password"))
+        print(request.form.get("confirm_password"))
+        print(request.form.get("password")==request.form.get("confirm_password"))
+        if(request.form.get("password")==request.form.get("confirm_password")):
+            print(get_number_of_ids())
+            data[0]=get_number_of_ids()[0][0]+1
+            data[1] = request.form.get('name') 
+            data[2] = request.form.get('password')
+            data[3] = request.form.get('email') 
+        create_student(data)
+        print(data)
     return render_template("register.html")
 
 def _register():

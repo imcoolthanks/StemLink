@@ -118,6 +118,33 @@ body{
     margin: 0.5em;
   }
 
+  /* [contenteditable]{
+
+    border-radius: 0.35rem;
+    transition: #c5ccd6 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  } */
+  [contenteditable = "true"] {
+ 
+    padding: .25em 0em;
+    
+    transition: padding .3s ease-in-out;
+  }
+  
+  [contenteditable = "true"]:hover,
+  [contenteditable = "true"]:focus {
+    padding: .25em;
+  }
+  
+  [contenteditable = "true"]:hover {
+    background: #fff;
+    outline: 2px solid rgba(66, 167, 240, 0.3);
+  }
+  
+  [contenteditable = "true"]:focus {
+    background: #fff;
+    outline: 2px solid rgba(66, 167, 240, 0.8);
+  }
+
   .interests p{
     border: 1px solid ;
     padding:3px;

@@ -7,7 +7,7 @@ var email = $('.email')
 var password = $('.password')
 // var bio_input = $('.bio_input')
 var bio = $('.bio')
-var text_secondary= $('.text-secondary')
+var text_secondary= $('.edit_info')
 // var user_input = $('.user_info_input')
 var save_button = $('.save')
 
@@ -24,8 +24,8 @@ var save_button = $('.save')
         save_button.hide()
         edit.show()
 
-        text_secondary.attr('contenteditable','false')
-        
+        text_secondary.attr('contenteditable','false')      
+            
     
         // text_secondary.show()
         // userChange.hide()
