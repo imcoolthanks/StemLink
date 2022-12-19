@@ -2,6 +2,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="../static/css/search.css"></link>
+<script src="https://kit.fontawesome.com/a1dc0f163e.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block title %}
@@ -9,7 +10,14 @@ Search
 {% endblock %}
 
 {% block content %}
-<!-- Do your code here, this would be where the content of the website goes. -->
+<div class="wrap">
+    <div class="search">
+       <input type="text" class="searchTerm" placeholder="What are you searching for?">
+       <button type="submit" class="searchButton">
+         <i class="fa fa-search"></i>
+      </button>
+    </div>
+ </div>
 Search
 {% endblock %}
 
