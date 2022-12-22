@@ -25,11 +25,11 @@ Profile
                         <!-- not yet link to user icon -->
                         <img src="../static/assets/user_icons/default_user_icon.jpg" alt="Admin" class="rounded-circle" width="150">
                         <div class="mt-3">
-                        <h4>username</h4>
-                        <p class="text-secondary mb-1">Title</p>
+                        <h4>{{info[0]}}</h4>
+                        <p class="text-secondary mb-1">Interests</p>
                         <div class = 'interests'>
                             <!-- add functionality where you can append interests to this div later? -->
-                            <p>Climate Change</p>
+                            <p>{{info[1]}}</p>
                         </div>
                         </div>
                     </div>
@@ -44,53 +44,61 @@ Profile
                     <div class="user_info_container">
                     <div><h4 style="margin-bottom: 30px;">User Info</h4></div>
                     <div class="editProfile">
-                        <button class = 'pencil'><i class="fa-solid fa-pencil"></i></button> 
-                        <button class = 'save' style = 'display:none'><i class="fa-solid fa-floppy-disk"></i></button> 
-                        
+                        <form active="#" method="POST"> 
+                            <input type="submit" id="submitbutton" name="change_page" value="Update">
+                        </form>
                     </div>
                 </div>
                 
-                        <div class="row">
-                        
-                        <div class="col-sm-3">
-                        <h6 class="mb-0">User Name</h6>
-                        </div>
-                        <span class="username text-secondary edit_info">{{username}}</span>
-                        <!-- <input class = 'userChange user_info_input' style = 'display:none' type = 'text'> -->
-                    </div>
-                
-                    <hr>
+                <div class="row">
                     
-                    <div class="row">
-                        <div class="col-sm-3">
-                        <h6 class="mb-0">Email</h6>
-                        </div>
-                        <span class=" email text-secondary edit_info">{{email}}</span>
-                        <!-- <input class = 'email_input user_info_input' style = 'display:none' type="email" > -->
+                    <div class="col-sm-3">
+                    <h6 class="mb-0">{{info[0]}}</h6>
                     </div>
+                    <span class="username text-secondary edit_info">{{username}}</span>
+                    <!-- <input class = 'userChange user_info_input' name="username" style = 'display:none' type = 'text' id="username"> -->
+                </div>
+            
+                <hr>
                 
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                        <h6 class="mb-0">Password</h6>
-                        </div>
-                        <span class="password text-secondary edit_info">{{password}}</span>
-                        <!-- <input class = 'password_input user_info_input'style = 'display:none' type="password"> -->
+                <div class="row">
+                    <div class="col-sm-3">
+                    <h6 class="mb-0">Email</h6>
                     </div>
-                
-                    <hr>
-                    <div class="row">
-                        <div class="col-sm-3">
-                        <h6 class="mb-0">Bio</h6>
-                        </div>
-                        <span class=" bio text-secondary edit_info">{{bio}}</span>
-                        <!-- <input class = 'bio_input user_info_input' style = 'display:none' type="text"> -->
+                    <span class=" email text-secondary edit_info">{{info[3]}}</span>
+                    <!-- <input class = 'email_input user_info_input' style = 'display:none' type="email" id="email" name="email"> -->
+                </div>
+            
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                    <h6 class="mb-0">Password</h6>
                     </div>
+                    <span class="password text-secondary edit_info">{{info[2]}}</span>
+                    <!-- <input class = 'password_input user_info_input'style = 'display:none' type="password" id="password" name="password"> -->
+                </div>
+            
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                    <h6 class="mb-0">Age</h6>
+                    </div>
+                    <span class=" bio text-secondary edit_info">{{info[4]}}</span>
+                    <!-- <input class = 'bio_input user_info_input' style = 'display:none' type="text" name="password"> -->
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                    <h6 class="mb-0">City Born In</h6>
+                    </div>
+                    <span class=" bio text-secondary edit_info">{{info[5]}} </span>
+                    <!-- <input class = 'bio_input user_info_input' style = 'display:none' type="text" name="password"> -->
+                </div>
+                <input type="Submit" value="Submit" id="Profile Submit Button">
+            
                 
-                    <hr>
 
-                    </div>
-                </div>           
+                
+                
             </div>
         </div>
     </div>

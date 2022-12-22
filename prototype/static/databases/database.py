@@ -24,4 +24,22 @@ def get_mentors():
     return cnx
 
 
+def check_if_user_exists(email,password):
+    cnx=database.cursor()
+    print(f"select count(*) from students WHERE name='{email}' and password='{password}';")
+    cnx.execute(f"select count(*) from students WHERE name='{email}' and password='{password}';")
+    student=list(cnx)[0][0]
+    
+    cnx.execute(f'select count(*) from mentor WHERE name="{email}" and password="{password}";')
+    mentor=list(cnx)[0][0]
+    return [student,mentor]
+def get_specific_student(email,password):
+    cnx=database.cursor()
+    cnx.execute(f'select name,Interests,password,email, age,state,id from students where name="{email}" and password="{password}";')
+    return list(cnx)
+def update(type,update_name,value,id):
+    cnx=database.cursor()
+    print(f"UPDATE {type} SET {update_name}={value} WHERE ID={id};")
+    cnx.execute(f'UPDATE {type} SET {update_name}="{value}" WHERE ID={id};')
+    database.commit()
 

@@ -1,8 +1,8 @@
-from re import L
+
 import sqlite3 as sql
 
 
-from flask import Flask, request
+from flask import Flask, request,redirect,url_for
 from flask import render_template
 
 from prototype.static.databases.database import *
@@ -11,6 +11,7 @@ from . import app
 import requests
 
 import os
+
 
 #Basic functions to load each page, need modifications
 @app.route("/")
@@ -21,10 +22,47 @@ def home():
 def dashboard():
     return render_template('dashboard.html', username='')
 
-@app.route("/profile")
+@app.route("/profile",methods=["POST","GET"])
 def profile():
-    return render_template('profile.html')
-
+    try:
+        interests=list(get_specific_student(email,password)[0])
+    except:
+        interests=[]
+   
+    if(request.method=="POST"):
+        return redirect(url_for("profile_change"))
+    return render_template('profile.html',info=interests)
+@app.route("/profileChange",methods=["GET","POST"])
+def profile_change():
+    global email
+    global password
+    try:
+        interests=list(get_specific_student(email,password)[0])
+    except:
+        interests=[]
+    if(request.method=="POST"):
+        data=[request.form.get("username"),request.form.get("email"),request.form.get("password"),request.form.get("Age"),request.form.get("City Born In"),request.form.get("interests")]
+        for i in range(len(data)):
+            print(email)
+            print(password)
+            print(get_specific_student(email,password))
+            if(data[i]!=""):
+                if(i==0):
+                    update("students","name",data[0],int(get_specific_student(email,password)[0][6]))
+                    email=data[0]
+                if(i==1):
+                    update("students","email",data[1],get_specific_student(email,password)[0][6])
+                if(i==2):
+                    update("students","password",data[2],get_specific_student(email,password)[0][6])
+                    password=data[2]
+                if(i==3):
+                    update("students","age",data[3],get_specific_student(email,password)[0][6])
+                if(i==4):
+                    update("students","State",data[4],get_specific_student(email,password)[0][6])
+                if(i==5):
+                    update("student","Interests",data[5],get_specific_student(email,password[0])[5])
+                return redirect(url_for("profile"))
+    return render_template("profile_change.html",info=interests)
 @app.route("/search")
 def search():
     return render_template('search.html')
@@ -37,56 +75,28 @@ def search():
 def login(): 
     print("check")
     if request.method == 'POST':
-        global user_email
-        global user_username
 
+        global email 
+        global password
         email = request.form.get('email') 
         password = request.form.get('password')
 
-        success, error_msg = _login(email, password)
+        success=check_if_user_exists(email,password)
+        print(success)
         
-        if success:
-            info = get_info(email)
-            interests = get_interests(email)[:3] #get top 3
-            interest_str = ', '.join(interests)
+        if success[0]>0 or success[1]>0 :
+            
+            print(success)
+            print(success[0])
+            print(success[1])
+            return redirect(url_for('profile'))
+            
+    return render_template('home.html')
 
-            #for now!!
-            people = [{'username': 'Queen', 'interest':'Computer Science', 'pfp':'default_user_icon.jpg'},
-                        {'username': 'Rick', 'interest':'You', 'pfp':'default_user_icon.jpg'},
-                        {'username': 'Adam', 'interest':'Anime', 'pfp':'default_user_icon.jpg'}]
-
-            news = get_news_by_interest(interests[0], 3)
-
-            return render_template("dashboard.html", user_username = info[2], pfp_url=info[5],
-                                    interests=interest_str, people = people, all_news=news)
-             
-        else:
-            return render_template('home.html') #, error=error_msg
-
-    return render_template('login.html')
-
-def _login(email, password):
-    print("check")
-    conn = sql.connect("users.db")
-    cur = conn.cursor()
-
-    try:
-        query = 'SELECT password FROM users WHERE email = ?'
-        cur.execute(query, (email,))
-        true_password = cur.fetchall()[0][0]
-    except:
-        return False, "Invalid Email Address."
-
-    conn.close()
-
-    if password == true_password:
-        return True, ""
-    else:
-        return False, print("Wrong Password.")
 
 
 #register function 
-@app.route("/register/",methods = ['POST', 'GET'])
+@app.route("/register",methods = ['POST', 'GET'])
 def register():
     data=["ID","name","password","email","imageUrl","age","country","State","Interests","mentors"]
     if request.method == 'POST':
