@@ -11,6 +11,7 @@ from . import app
 import requests
 
 import os
+from prototype.api import get_news_by_interest
 
 
 #Basic functions to load each page, need modifications
@@ -25,42 +26,48 @@ def dashboard():
 @app.route("/profile",methods=["POST","GET"])
 def profile():
     try:
-        interests=list(get_specific_student(email,password)[0])
+        interests=list(get_specific_student(email,password)[0])#Gets the interests and stores them in the interests variable
+        print(interests)
+        inter=list(get_news_by_interest(email,password)[0])[1].split(",")#Gets the interests
+        news=[]
+        for interest in inter:#loops through the interests
+            news.append(get_news_by_interest(interest,3))#gets the news for a specific interest
+        print(news)
     except:
         interests=[]
    
     if(request.method=="POST"):
-        return redirect(url_for("profile_change"))
-    return render_template('profile.html',info=interests)
+        return redirect(url_for("profile_change"))#When the user clicks the update change button it will redirect them to the profile change website
+    return render_template('profile.html',info=interests,news=news)
 @app.route("/profileChange",methods=["GET","POST"])
 def profile_change():
     global email
     global password
     try:
-        interests=list(get_specific_student(email,password)[0])
+        interests=list(get_specific_student(email,password)[0])# Gets the interests
     except:
         interests=[]
     if(request.method=="POST"):
-        data=[request.form.get("username"),request.form.get("email"),request.form.get("password"),request.form.get("Age"),request.form.get("City Born In"),request.form.get("interests")]
+        data=[request.form.get("username"),request.form.get("email"),request.form.get("password"),request.form.get("Age"),request.form.get("City Born In"),request.form.get("interests")]#Gets the inputed data
         for i in range(len(data)):
             print(email)
             print(password)
             print(get_specific_student(email,password))
-            if(data[i]!=""):
+            if(data[i]!=""):#checks if the data is not empty then update the data
                 if(i==0):
-                    update("students","name",data[0],int(get_specific_student(email,password)[0][6]))
+                    update("students","name",data[0],int(get_specific_student(email,password)[0][6]))#updates the username
                     email=data[0]
                 if(i==1):
-                    update("students","email",data[1],get_specific_student(email,password)[0][6])
+                    update("students","email",data[1],get_specific_student(email,password)[0][6])#updates the email
                 if(i==2):
-                    update("students","password",data[2],get_specific_student(email,password)[0][6])
+                    update("students","password",data[2],get_specific_student(email,password)[0][6])#updates the password
                     password=data[2]
                 if(i==3):
-                    update("students","age",data[3],get_specific_student(email,password)[0][6])
+                    update("students","age",data[3],get_specific_student(email,password)[0][6])#updates the age of the person
                 if(i==4):
-                    update("students","State",data[4],get_specific_student(email,password)[0][6])
+                    update("students","State",data[4],get_specific_student(email,password)[0][6])#updates the state the person lives in
                 if(i==5):
-                    update("student","Interests",data[5],get_specific_student(email,password[0])[5])
+                    update("students","Interests",data[5],get_specific_student(email,password)[0][6])#updates the interests
                 return redirect(url_for("profile"))
     return render_template("profile_change.html",info=interests)
 @app.route("/search")
@@ -78,18 +85,18 @@ def login():
 
         global email 
         global password
-        email = request.form.get('email') 
-        password = request.form.get('password')
+        email = request.form.get('email') #gets the email
+        password = request.form.get('password')#gets the paassword
 
-        success=check_if_user_exists(email,password)
+        success=check_if_user_exists(email,password)#checks if user exists
         print(success)
         
-        if success[0]>0 or success[1]>0 :
+        if success[0]>0 or success[1]>0 :#check if they exist in the students or mentors (Nothing is any different now)
             
             print(success)
             print(success[0])
             print(success[1])
-            return redirect(url_for('profile'))
+            return redirect(url_for('profile'))#if the user exists send them to the profile page
             
     return render_template('home.html')
 
@@ -98,18 +105,18 @@ def login():
 #register function 
 @app.route("/register",methods = ['POST', 'GET'])
 def register():
-    data=["ID","name","password","email","imageUrl","age","country","State","Interests","mentors"]
+    data=["ID","name","password","email","imageUrl","age","country","State","Interests","mentors"]#Gets the data
     if request.method == 'POST':
         print(request.form.get("password"))
         print(request.form.get("confirm_password"))
         print(request.form.get("password")==request.form.get("confirm_password"))
-        if(request.form.get("password")==request.form.get("confirm_password")):
+        if(request.form.get("password")==request.form.get("confirm_password")):#checks if the password == to the confirm password
             print(get_number_of_ids())
-            data[0]=get_number_of_ids()[0][0]+1
-            data[1] = request.form.get('name') 
-            data[2] = request.form.get('password')
-            data[3] = request.form.get('email') 
-        create_student(data)
+            data[0]=get_number_of_ids()[0][0]+1#create a id number for the person
+            data[1] = request.form.get('name') #sets the name
+            data[2] = request.form.get('password')#sets the password
+            data[3] = request.form.get('email') #sets the email
+        create_student(data)#creates a student as a beginning
         print(data)
     return render_template("register.html")
 
@@ -118,103 +125,7 @@ def _register():
   
 
 
-# 2. Dashboard
 
-# - Display all user info
-def get_info(email):
-    conn = sql.connect("users.db")
-    cur = conn.cursor()
-
-    #get username
-    query = 'SELECT * FROM users WHERE email = ?'
-    cur.execute(query, (email,))
-    info = cur.fetchall()[0]
-
-    print(info)
-
-    conn.close()
-
-    return info
-
-# - Display user's interest
-def get_interests(email):
-    conn = sql.connect("interests.db")
-    cur = conn.cursor()
-
-    #get username
-    query = 'SELECT interest FROM interests WHERE email = ?'
-    cur.execute(query, (email,))
-    rows = list(cur.fetchall())
-
-    conn.close()
-
-    interests = []
-
-    for r in rows:
-        interests.append(r[0])
-
-    #return an array of interests
-    return interests
-
-# - Display news based on interest
-def get_news_by_interest(interest, num):
-    # BBC news api
-    # following query parameters are used
-    # source, sortBy and apiKey
-    query_params = {
-      "sortBy": "top",
-      "apiKey": "803faabb3328410ebf50846c453353e2",
-      "q": interest,
-      "language":"en"
-    }
-    main_url = " https://newsapi.org/v2/everything"
- 
-    # fetching data in json format
-    res = requests.get(main_url, params=query_params)
-    data = res.json()
- 
-    # getting all articles in a string article
-    article = data["articles"]
- 
-    # empty list which will
-    # contain all trending news
-    all_results = []
-      
-    for i in range(num):
-        curr = dict()
-
-        ar = article[i]
-
-        curr['title'] = ar["title"]
-        curr['description'] = ar["description"]
-        curr['url'] = ar["url"]
-        curr['urlToImage'] = ar["urlToImage"]
-
-        all_results.append(curr)
-
-    return all_results
-
-
-# - Enter interest, takes in interest as string and return people (name and pfp) (Adam)
-
-
-
-# - Display results
-
-
-
-
-# 3. Search Page (let's wait for grant)
-
-# - Display results
-
-
-
-
-# 4. Profile
-
-
-# - When users changed their info and submits, update database (Adam)
 
 
 
