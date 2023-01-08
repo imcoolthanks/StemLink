@@ -11,13 +11,39 @@ Search
 
 {% block content %}
 <div class="wrap">
+    <img class="nav-logo" src="../static/assets/ypstem_logo.png" alt="Logo">
     <div class="search">
-       <input type="text" class="searchTerm" placeholder="What are you searching for?">
+       <input type="text" id="searchTerm" placeholder="Search">
        <button type="submit" class="searchButton">
          <i class="fa fa-search"></i>
       </button>
     </div>
- </div>
+
+    <div class="searchResultRow">
+        <div class="resultCard">
+            <img class = profile_pic src = "" alt = "Profile Pic">
+            <p class = "user_info">[Name]</p>
+            <p class = "user_info">[interests]</p>
+            <p class = "user_info">[student/employer]</p>
+        </div>
+
+
+        <div class="resultCard">
+            <img class = profile_pic src = "" alt = "Profile Pic">
+            <p class = "user_info">[Name]</p>
+            <p class = "user_info">[interests]</p>
+            <p class = "user_info">[student/employer]</p>
+        </div>
+
+        <div class="resultCard">
+            <img class = profile_pic src = "" alt = "Profile Pic">
+            <p class = "user_info">[Name]</p>
+            <p class = "user_info">[interests]</p>
+            <p class = "user_info">[student/employer]</p>
+        </div>
+    </div>
+</div>
+ 
 Search
 {% endblock %}
 

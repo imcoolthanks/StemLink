@@ -1,8 +1,14 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 
 body{
   background: #f2f2f2;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Poppins", "sans-serif";
+}
+
+input[type = "text"]{
+    font-size:14px;
+    font-family:"Poppins", "san-serif"'
 }
 
 .search {
@@ -11,7 +17,7 @@ body{
   display: flex;
 }
 
-.searchTerm {
+#searchTerm {
   width: 100%;
   border: 3px solid #120855;
   border-right: none;
@@ -21,6 +27,11 @@ body{
   outline: none;
   
 }
+#searchTerm:focus {
+    background: #fff;
+    border: none;
+    outline: 2px solid rgba(24, 11, 109, 0.8);
+  }
 
 .searchTerm:focus{
   color: #120855;
@@ -41,8 +52,42 @@ body{
 
 .wrap{
   width: 75%;
-  position: absolute;
+  position: fixed;
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.nav-logo{
+    margin-top: 30px;
+    height:25vh;
+    
+}
+
+.searchResultRow{
+    padding-top:1rem;
+    position: absolute;
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    width:100%;
+    
+}
+
+.resultCard{
+    background-color:#326077;
+    color:white;
+    padding:25px;
+    margin:4px;
+    transition: transform .2s;
+}
+
+.resultCard:hover{
+    -webkit-transform: scale(1,1);
+    box-shadow: 0 40px 200px rgba(255,0,0,0.1);
+}
+.resultCard:hover{
+    transform: scale(1.1);
 }
