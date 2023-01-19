@@ -82,12 +82,26 @@ input[type = "text"]{
     padding:25px;
     margin:4px;
     transition: transform .2s;
+    border-radius: 5px;
 }
 
 .resultCard:hover{
     -webkit-transform: scale(1,1);
-    box-shadow: 0 40px 200px rgba(255,0,0,0.1);
+    box-shadow: 0 40px 200px rgba(237, 12, 12, 0.2);
 }
 .resultCard:hover{
     transform: scale(1.1);
+}
+
+.spacer{
+  aspect-ratio: 900/400;
+  width:120%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+
+.layered_wave{
+  background-image: url("../assets/layered-waves.svg");
 }
