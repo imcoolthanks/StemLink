@@ -10,7 +10,11 @@ body{
   position: relative;
   display: flex;
 }
-
+#card
+{
+  background-color: aqua;
+  border: 3px solid #120855;
+}
 .searchTerm {
   width: 100%;
   border: 3px solid #120855;
@@ -45,4 +49,13 @@ body{
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+#footer {
+  bottom: 0;
+  color: #707070;
+  height: 2em;
+  left: 0;
+  position: relative; 
+  font-size: small;
+  width:100%;
 }

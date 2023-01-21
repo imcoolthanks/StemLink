@@ -37,9 +37,21 @@ def get_specific_student(email,password):
     cnx=database.cursor()
     cnx.execute(f'select name,Interests,password,email, age,state,id from students where name="{email}" and password="{password}";')
     return list(cnx)
+def get_specific_student_id(id):
+    cnx=database.cursor()
+    cnx.execute(f'select name,Interests,password,email, age,state,id from students where ID={id};')
+    return list(cnx)
 def update(type,update_name,value,id):
     cnx=database.cursor()
     print(f"UPDATE {type} SET {update_name}={value} WHERE ID={id};")
     cnx.execute(f'UPDATE {type} SET {update_name}="{value}" WHERE ID={id};')
     database.commit()
 
+def get_similar_interests(type,interest):
+    cnx=database.cursor()
+    print(f'select ID from students where Interests like "%{interest}%";')
+    cnx.execute(f'select ID from students where Interests like "%{interest}%";')
+    print(cnx)
+
+    return list(cnx)
+    

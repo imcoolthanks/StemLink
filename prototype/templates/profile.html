@@ -37,7 +37,12 @@ Profile
                 </div>
                 <div class="news">
                     {% for story in news%}
-                        <h3>{story}</h3>
+                        {% for s in story%}
+                            <p>{{s[0]}}<p>
+                            <p>{{s[2]}}</p>
+                            <a href={{s[3]}}>{{s[3]}}</a>
+                            <p>________________________________</p>
+                        {%endfor%}
                     {% endfor %}
                 </div>
              </div>
@@ -105,6 +110,7 @@ Profile
                 
                 
             </div>
+  
         </div>
     </div>
     

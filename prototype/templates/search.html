@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="../static/css/search.css"></link>
+<link rel="stylesheet" href="../static/css/search.css">
+
 <script src="https://kit.fontawesome.com/a1dc0f163e.js" crossorigin="anonymous"></script>
 {% endblock %}
 
@@ -12,13 +13,29 @@ Search
 {% block content %}
 <div class="wrap">
     <div class="search">
-       <input type="text" class="searchTerm" placeholder="What are you searching for?">
-       <button type="submit" class="searchButton">
-         <i class="fa fa-search"></i>
-      </button>
+      <form method="post"> 
+       <input type="text" class="searchTerm" id="term" name="term" placeholder="What are you searching for?">
+       <input type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </form>
+    
+    </div>
+    <div class="results_search">
+      {%for i in people%}
+        {% for person in i%}
+          <div id="card">
+            <h1>Name:{{person[0]}}</h1>
+            <h2>Interests:{{person[1]}}</h1>
+          
+            <h2>Email:{{person[3]}}</h1>
+            <h2>Age:{{person[4]}}</h1>
+            <h2>Residence Area:{{person[5]}}</h1>
+          </div>
+        {%endfor%}
+      {%endfor%}
     </div>
  </div>
-Search
+
 {% endblock %}
 
 {% block script %}

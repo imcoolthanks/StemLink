@@ -25,13 +25,15 @@ def dashboard():
 
 @app.route("/profile",methods=["POST","GET"])
 def profile():
+    global interests
+    news=[]
     try:
         interests=list(get_specific_student(email,password)[0])#Gets the interests and stores them in the interests variable
         print(interests)
         inter=list(get_news_by_interest(email,password)[0])[1].split(",")#Gets the interests
         news=[]
         for interest in inter:#loops through the interests
-            news.append(get_news_by_interest(interest,3))#gets the news for a specific interest
+            news.append(get_news_by_interest(interest,1))#gets the news for a specific interest
         print(news)
     except:
         interests=[]
@@ -70,9 +72,37 @@ def profile_change():
                     update("students","Interests",data[5],get_specific_student(email,password)[0][6])#updates the interests
                 return redirect(url_for("profile"))
     return render_template("profile_change.html",info=interests)
-@app.route("/search")
+
+#Search Page
+@app.route("/search",methods=["POST","GET"])
 def search():
-    return render_template('search.html')
+    people=[]
+    search_people=[]
+  
+    if(request.method=="POST"):
+       
+        to_search=request.form.get("term")
+        print(to_search)
+        try:
+            people.append(get_similar_interests("students",to_search))
+        except:
+            print(get_similar_interests("students",to_search))
+            print("did not work")
+            people=[]
+    print(people)
+    for s in people:
+        for i in s:
+            search_people.append(get_specific_student_id(i[0]))
+    print(search_people)
+
+    
+
+        
+    
+    
+
+
+    return render_template('search.html',people=search_people)
 
 
 # 1. Home Page
@@ -123,7 +153,6 @@ def register():
 def _register():
     print(" register check")
   
-
 
 
 

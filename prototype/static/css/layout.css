@@ -275,4 +275,13 @@ body {
     display: block;
     border-bottom: 1px solid #1bbc9b;
 }
+#footer {
+    bottom: 0;
+    color: #707070;
+    height: 2em;
+    left: 0;
+    position: relative;
+    font-size: small;
+    width:100%;
+}
 
