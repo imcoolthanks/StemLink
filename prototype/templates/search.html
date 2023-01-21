@@ -11,8 +11,14 @@ Search
 {% endblock %}
 
 {% block content %}
+
+<div class = "spacer layered_wave"></div>
+
 <div class="wrap">
+    
+    <img class="nav-logo" src="../static/assets/ypstem_logo.png" alt="Logo">
     <div class="search">
+<<<<<<< HEAD
       <form method="post"> 
        <input type="text" class="searchTerm" id="term" name="term" placeholder="What are you searching for?">
        <input type="submit" class="searchButton">
@@ -36,6 +42,40 @@ Search
     </div>
  </div>
 
+=======
+       <input type="text" id="searchTerm" placeholder="Search">
+       <button type="submit" class="searchButton">
+         <i class="fa fa-search"></i>
+      </button>
+    </div>
+
+    <div class="searchResultRow">
+        <div class="resultCard">
+            <img class = profile_pic src = "" alt = "Profile Pic">
+            <p class = "user_info">[Name]</p>
+            <p class = "user_info">[interests]</p>
+            <p class = "user_info">[student/employer]</p>
+        </div>
+
+
+        <div class="resultCard">
+            <img class = profile_pic src = "" alt = "Profile Pic">
+            <p class = "user_info">[Name]</p>
+            <p class = "user_info">[interests]</p>
+            <p class = "user_info">[student/employer]</p>
+        </div>
+
+        <div class="resultCard">
+            <img class = profile_pic src = "" alt = "Profile Pic">
+            <p class = "user_info">[Name]</p>
+            <p class = "user_info">[interests]</p>
+            <p class = "user_info">[student/employer]</p>
+        </div>
+    </div>
+</div>
+ 
+Search
+>>>>>>> 7cbbdfb468b71d30d7781d59e6e040f888fd4f65
 {% endblock %}
 
 {% block script %}
