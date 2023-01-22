@@ -6,6 +6,11 @@ body{
   font-family: "Poppins", "sans-serif";
 }
 
+form{
+  margin:0px;
+  padding:0px;
+}
+
 input[type = "text"]{
     font-size:14px;
     font-family:"Poppins", "san-serif"'
@@ -16,17 +21,11 @@ input[type = "text"]{
   position: relative;
   display: flex;
 }
-<<<<<<< HEAD
-#card
-{
-  background-color: aqua;
-  border: 3px solid #120855;
-}
-.searchTerm {
-=======
 
-#searchTerm {
->>>>>>> 7cbbdfb468b71d30d7781d59e6e040f888fd4f65
+
+
+
+.searchTerm {
   width: 100%;
   border: 3px solid #120855;
   border-right: none;
@@ -36,15 +35,15 @@ input[type = "text"]{
   outline: none;
   
 }
-#searchTerm:focus {
+.searchTerm:focus {
     background: #fff;
     border: none;
     outline: 2px solid rgba(24, 11, 109, 0.8);
   }
 
-.searchTerm:focus{
+/* .searchTerm:focus{
   color: #120855;
-}
+} */
 
 .searchButton {
   width: 40px;
@@ -65,8 +64,10 @@ input[type = "text"]{
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
-<<<<<<< HEAD
+  max-height: 100vh;
+  
 }
+
 #footer {
   bottom: 0;
   color: #707070;
@@ -75,17 +76,18 @@ input[type = "text"]{
   position: relative; 
   font-size: small;
   width:100%;
-=======
   text-align: center;
 }
 
 .nav-logo{
     margin-top: 30px;
     height:25vh;
+    margin:auto;
+    display:block;
     
 }
 
-.searchResultRow{
+.results_search{
     padding-top:1rem;
     position: absolute;
     display:flex;
@@ -96,22 +98,28 @@ input[type = "text"]{
     
 }
 
-.resultCard{
+.card{
     background-color:#326077;
+    
     color:white;
     padding:25px;
     margin:4px;
     transition: transform .2s;
     border-radius: 5px;
+    width:30%;
+    
+    
+    font-size:14px;
+   
 }
 
-.resultCard:hover{
+.card:hover{
     -webkit-transform: scale(1,1);
-    box-shadow: 0 40px 200px rgba(237, 12, 12, 0.2);
+    box-shadow: 0 40px 200px rgba(110, 150, 234, 0.2);
 }
-.resultCard:hover{
+/* .resultCard:hover{
     transform: scale(1.1);
-}
+} */
 
 .spacer{
   aspect-ratio: 900/400;
@@ -124,5 +132,5 @@ input[type = "text"]{
 
 .layered_wave{
   background-image: url("../assets/layered-waves.svg");
->>>>>>> 7cbbdfb468b71d30d7781d59e6e040f888fd4f65
+  position: fixed;
 }
