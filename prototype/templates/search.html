@@ -17,18 +17,22 @@ Search
 <div class="wrap">
     
     <img class="nav-logo" src="../static/assets/ypstem_logo.png" alt="Logo">
+    <form method="post"> 
     <div class="search">
-      <form method="post"> 
        <input type="text" class="searchTerm" id="term" name="term" placeholder="What are you searching for?">
-       <input type="submit" class="searchButton">
+       <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
+     </button>
+       <!-- <input type="submit" class="searchButton btn fa-input" value="&#f002 Input"> -->
+        <!-- <i class="fa fa-search"></i> -->
       </form>
     
     </div>
+
     <div class="results_search">
       {%for i in people%}
         {% for person in i%}
-          <div id="card">
+          <div class="card">
             <h1>Name:{{person[0]}}</h1>
             <h2>Interests:{{person[1]}}</h1>
           
@@ -39,7 +43,7 @@ Search
         {%endfor%}
       {%endfor%}
     </div>
- </div>
+</div>
 
 {% endblock %}
 
